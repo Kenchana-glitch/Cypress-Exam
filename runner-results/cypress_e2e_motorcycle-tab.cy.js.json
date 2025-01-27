@@ -1,0 +1,10 @@
+{
+  "suites": 1,
+  "tests": 16,
+  "passes": 16,
+  "pending": 0,
+  "failures": 0,
+  "start": "2025-01-26T12:16:36.924Z",
+  "duration": 120435,
+  "file": "cypress\\e2e\\motorcycle-tab.cy.js"
+}

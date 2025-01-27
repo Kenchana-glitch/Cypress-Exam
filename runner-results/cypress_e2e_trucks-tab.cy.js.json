@@ -1,0 +1,10 @@
+{
+  "suites": 1,
+  "tests": 10,
+  "passes": 10,
+  "pending": 0,
+  "failures": 0,
+  "start": "2025-01-26T12:16:34.750Z",
+  "duration": 105579,
+  "file": "cypress\\e2e\\trucks-tab.cy.js"
+}

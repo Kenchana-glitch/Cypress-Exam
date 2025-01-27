@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "cypress": "^14.0.0",
+    "cypress-parallel": "^0.14.0",
+    "hex-rgb": "^5.0.0",
+    "rgb-hex": "^4.1.0"
+  },
+  "name": "cypress-exam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "cypress run",
+    "cy:parallel": "cypress-parallel -s cy:run -t 3 -d 'cypress/e2e/*.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress-downloadfile": "^1.2.4",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^2.0.1"
+  }
+}
