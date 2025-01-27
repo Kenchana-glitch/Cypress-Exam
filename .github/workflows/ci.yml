@@ -27,9 +27,9 @@ jobs:
       # leaving Cypress Cloud hanging ...
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
-      # matrix:
-      #   # run copies of the current job in parallel
-      #   containers: [1, 2, 3]
+      matrix:
+        # run copies of the current job in parallel
+        containers: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,8 +37,10 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        env:
-          SPLIT: ${{ strategy.job-total }}
-          SPLIT_INDEX: ${{ strategy.job-index }}
+        with:
+          parallel: true
+        # env:
+        #   SPLIT: ${{ strategy.job-total }}
+        #   SPLIT_INDEX: ${{ strategy.job-index }}
         # with:
         #   start: npm run cy:parallel
