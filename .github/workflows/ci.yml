@@ -11,4 +11,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          run-parallel: npm run cy:parallel
+          runTests: npm run cy:parallel
