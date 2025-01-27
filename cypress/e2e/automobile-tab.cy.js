@@ -109,22 +109,18 @@ describe('automobile tab', () => {
     cy.get('#sendQuoteForm > :nth-child(1) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be at least a valid email format')
     });
-
     //Phone
     cy.get('#sendQuoteForm > :nth-child(2) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be only digits')
     });
-
     //Username
     cy.get('#sendQuoteForm > :nth-child(3) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot')
     });
-
     //Password
     cy.get('#sendQuoteForm > :nth-child(4) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter')
     });
-
     //Confirm Password
     cy.get('#sendQuoteForm > :nth-child(5) > .error').then((el)=>{
       expect(el.text()).to.eq('Must have the same value as the Password field')
@@ -164,7 +160,6 @@ describe('automobile tab', () => {
   });
 
   it('should display success message', ()=>{
-
     cy.fillVehicleData('auto');
     cy.get('#nextenterinsurantdata').click();
     cy.fillInsurantData();
@@ -181,6 +176,7 @@ describe('automobile tab', () => {
     cy.once('uncaught:exception', () => false);
     cy.get('#sendemail').click();
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
+    
     cy.contains('Sending e-mail success!')
   });
 });

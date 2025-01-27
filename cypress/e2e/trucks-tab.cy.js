@@ -44,8 +44,6 @@ describe('trucks tab',()=>{
 
   it('should import a file', () => {
     cy.get('#nextenterinsurantdata').click();
-    // cy.fillInsurantData();
-    // cy.get('#open').click();
     cy.get('input[type="file"]').selectFile('cypress/fixtures/cypress image.jpg',{force:true})
     cy.get('#picture').should('have.value', 'cypress image.jpg');
   });
@@ -64,15 +62,19 @@ describe('trucks tab',()=>{
   it('should view quote and route to email page', () => {
     cy.fillVehicleData('truck');
     cy.get('#nextenterinsurantdata').click();
+
     cy.fillInsurantData();
     cy.get('#nextenterproductdata').click();
+
     cy.fillProductData('truck');
     cy.get('#nextselectpriceoption').click();
+
     cy.get('input[id="selectultimate"]').click({force:true});
     cy.get('a[id ="viewquote"').invoke('removeAttr','target').click()
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
     cy.get('#selectpriceoption').click();
     cy.get('#nextsendquote').click();
+
     cy.get('section[id="sendQuoteForm"]').should('exist');
     cy.contains('E-Mail');
   });
@@ -80,10 +82,13 @@ describe('trucks tab',()=>{
   it('should enter invalid data on the quote form',()=>{
     cy.fillVehicleData('truck');
     cy.get('#nextenterinsurantdata').click();
+
     cy.fillInsurantData();
     cy.get('#nextenterproductdata').click();
+
     cy.fillProductData('truck');
     cy.get('#nextselectpriceoption').click();
+
     cy.get('input[id="selectultimate"]').click({force:true});
     cy.get('a[id ="viewquote"').invoke('removeAttr','target').click()
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
@@ -91,21 +96,24 @@ describe('trucks tab',()=>{
     cy.get('#nextsendquote').click();
     
     cy.fillInvalidQuoteData();
+
     cy.get('#email').should('have.value','email');
     cy.get('#phone').should('have.value','phone');
     cy.get('#username').should('have.value','1user');
     cy.get('#password').should('have.value','pass');
     cy.get('#confirmpassword').should('have.value','password');
-    // cy.get('#Comments').type('No Comment');
   });
 
   it('should validate error display on quote form', ()=>{
     cy.fillVehicleData('truck');
     cy.get('#nextenterinsurantdata').click();
+
     cy.fillInsurantData();
     cy.get('#nextenterproductdata').click();
+
     cy.fillProductData('truck');
     cy.get('#nextselectpriceoption').click();
+
     cy.get('input[id="selectultimate"]').click({force:true});
     cy.get('a[id ="viewquote"').invoke('removeAttr','target').click()
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
@@ -113,26 +121,23 @@ describe('trucks tab',()=>{
     cy.get('#nextsendquote').click();
     
     cy.fillInvalidQuoteData();
+
     //E-mail
     cy.get('#sendQuoteForm > :nth-child(1) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be at least a valid email format')
     });
-
     //Phone
     cy.get('#sendQuoteForm > :nth-child(2) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be only digits')
     });
-
     //Username
     cy.get('#sendQuoteForm > :nth-child(3) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot')
     });
-
     //Password
     cy.get('#sendQuoteForm > :nth-child(4) > .error').then((el)=>{
       expect(el.text()).to.eq('Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter')
     });
-
     //Confirm Password
     cy.get('#sendQuoteForm > :nth-child(5) > .error').then((el)=>{
       expect(el.text()).to.eq('Must have the same value as the Password field')
@@ -140,13 +145,15 @@ describe('trucks tab',()=>{
   });
 
   it('should fill the form and no error is displayed', ()=>{
-
     cy.fillVehicleData('truck');
     cy.get('#nextenterinsurantdata').click();
+
     cy.fillInsurantData();
     cy.get('#nextenterproductdata').click();
+
     cy.fillProductData('truck');
     cy.get('#nextselectpriceoption').click();
+
     cy.get('input[id="selectultimate"]').click({force:true});
     cy.get('a[id ="viewquote"').invoke('removeAttr','target').click()
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
@@ -154,6 +161,7 @@ describe('trucks tab',()=>{
     cy.get('#nextsendquote').click();
 
     cy.fillQuoteData();
+
     cy.get('#email').should('have.value','email@mail.com');
     cy.get('#email').should('have.css','border-color','rgb(29, 99, 175)');
     cy.get('#phone').should('have.value','123445576');
@@ -172,13 +180,15 @@ describe('trucks tab',()=>{
   });
 
   it('should display success message', ()=>{
-
     cy.fillVehicleData('truck');
     cy.get('#nextenterinsurantdata').click();
+
     cy.fillInsurantData();
     cy.get('#nextenterproductdata').click();
+
     cy.fillProductData('truck');
     cy.get('#nextselectpriceoption').click();
+
     cy.get('input[id="selectultimate"]').click({force:true});
     cy.get('a[id ="viewquote"').invoke('removeAttr','target').click()
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
@@ -186,11 +196,11 @@ describe('trucks tab',()=>{
     cy.get('#nextsendquote').click();
 
     cy.fillQuoteData();
+    
     cy.once('uncaught:exception', () => false);
     cy.get('#sendemail').click();
     cy.get('.isloading-overlay',{timeout:8000}).should('not.exist');
+
     cy.contains('Sending e-mail success!')
   });
-
-
 })
