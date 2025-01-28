@@ -10,10 +10,6 @@ describe('trucks tab',()=>{
     cy.get('#selectedinsurance').contains('Truck');
   });
 
-  it('should display trucks form git test',()=>{
-    cy.get('#selectedinsurance').contains('Truck');
-  });
-
  it('should fill up all fields in vehicle form', () => {
     cy.fillVehicleData('truck');
     
